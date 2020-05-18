@@ -3,8 +3,7 @@ static const float PI2 = PI * 2.0f;
 
 RWTexture2D<float4> tex: register(u0);
 
-cbuffer ConfigBuffer : register(b0)
-{
+cbuffer ConfigBuffer : register(b0) {
     float3 camera_pos;
     int step;
     int screen_width;
@@ -19,8 +18,7 @@ cbuffer ConfigBuffer : register(b0)
 
 static const int SPHERES_COUNT = DEFINE_SPHERES_COUNT;
 
-cbuffer geometry_buffer : register(b1)
-{
+cbuffer geometry_buffer : register(b1) {
     float4 spheres[SPHERES_COUNT];
     float4 mats[SPHERES_COUNT];
 };
@@ -49,7 +47,7 @@ uint wang_hash(uint seed) {
 }
 
 float random(int random_seed) {
-    return float(wang_hash(random_seed) % 10000) / 10000.0f;
+    return float(wang_hash(random_seed) % 1000000) / 1000000.0f;
 }
 
 float3 uniform_unit_sphere(int random_seed) {
