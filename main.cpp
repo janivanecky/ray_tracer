@@ -5,7 +5,6 @@
 #include "ui.h"
 #include "font.h"
 #include "input.h"
-#include "random.h"
 #include "colors.h"
 #include <cassert>
 
@@ -143,15 +142,15 @@ int main(int argc, char **argv) {
     auto reset_spheres = [&spheres, &spheres_buffer]() {
         const float SPHERES_CIRCLE_RADIUS = 15.0f;
         for(int i = 1; i < SPHERES_COUNT; ++i) {
-            float sphere_size = random::uniform(0.5f, 1.0f);
+            float sphere_size = math::random_uniform(0.5f, 1.0f);
             
             // Generate sphere's position so it doesn't overlap with any other sphere.
             float x, z;
             bool collision = false;
             do {
                 // Random position in a circle.
-                float a = random::uniform(0, math::PI2);
-                float r = random::uniform() * SPHERES_CIRCLE_RADIUS;
+                float a = math::random_uniform(0, math::PI2);
+                float r = math::random_uniform() * SPHERES_CIRCLE_RADIUS;
                 x = math::sin(a) * r - 6;
                 z = math::cos(a) * r;
                 Vector2 current_pos = Vector2(x, z);
@@ -180,14 +179,14 @@ int main(int argc, char **argv) {
                 DIELECTRIC,
                 LIGHT
             };
-            Material mat = index_to_mat[int(random::uniform(0, ARRAYSIZE(index_to_mat)))];
+            Material mat = index_to_mat[int(math::random_uniform(0, ARRAYSIZE(index_to_mat)))];
 
             // Get sphere's color.
             Vector3 color = Vector3(0.9f, 0.9f, 0.9f);
             switch (mat) {
                 case LAMBERT:
                 case LAMBERT_CHECKERBOARD: {
-                    color = colors::hsv_to_rgb(random::uniform(180, 360), 0.9f, 1) * 0.2f;
+                    color = colors::hsv_to_rgb(math::random_uniform(180, 360), 0.9f, 1) * 0.2f;
                 }
                 break;
                 case METAL:
@@ -195,7 +194,7 @@ int main(int argc, char **argv) {
                 case DIELECTRIC:
                 break;
                 case LIGHT: {
-                    color = colors::hsv_to_rgb(random::uniform(0, 360), 0.2f, 1) * 500.0f;
+                    color = colors::hsv_to_rgb(math::random_uniform(0, 360), 0.2f, 1) * 500.0f;
                 }
                 break;
             }
