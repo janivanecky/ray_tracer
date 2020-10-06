@@ -19,12 +19,12 @@ int main(int argc, char **argv) {
     // Set up window
     uint32_t window_width = 1280, window_height = 960;
     uint32_t render_target_width = window_width / 2, render_target_height = window_height / 2;
- 	Window window = platform::get_window("Ray Tracer", window_width, window_height);
-    assert(platform::is_window_valid(&window));
+    HWND window = platform::get_window("Ray Tracer", window_width, window_height);
+    assert(platform::is_window_valid(window));
 
     // Init graphics
     graphics::init();
-    graphics::init_swap_chain(&window);
+    graphics::init_swap_chain(window, window_width, window_height);
 
     // Init UI.
     font::init();
