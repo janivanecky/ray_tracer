@@ -265,9 +265,10 @@ int main(int argc, char **argv) {
             // Handle mouse movement.
             if (input::mouse_left_button_down()) {
                 const float MOUSE_SPEED = 0.003f;
-                Vector2 dm = input::mouse_delta_position();
-                azimuth -= dm.x * MOUSE_SPEED;
-                polar -= dm.y * MOUSE_SPEED;
+                float dmx = input::mouse_delta_position_x();
+                float dmy = input::mouse_delta_position_y();
+                azimuth -= dmx * MOUSE_SPEED;
+                polar -= dmy * MOUSE_SPEED;
                 polar = math::clamp(polar, 0.02f, math::PI);  // Clamp so we cannot look completely along y-axis.
 
                 reset_rendering();   
