@@ -3,6 +3,7 @@
 #include "file_system.h"
 #include "maths.h"
 #include "ui.h"
+#include "ui_draw.h"
 #include "font.h"
 #include "input.h"
 #include "colors.h"
@@ -28,7 +29,8 @@ int main(int argc, char **argv) {
 
     // Init UI.
     font::init();
-    ui::init((float)window_width, (float)window_height);
+    ui::init();
+    ui_draw::init((float)window_width, (float)window_height);
     ui::set_input_responsive(true);
 
     // Create window render target
@@ -343,9 +345,9 @@ int main(int argc, char **argv) {
             // Render FPS and rendering steps counter.
             char text_buffer[100];
             sprintf_s(text_buffer, 100, "FPS %d", fps);
-            ui::draw_text(text_buffer, Vector2(10, float(window_height) - 10), text_color, Vector2(0, 1));
+            ui_draw::draw_text(text_buffer, Vector2(10, float(window_height) - 10), text_color, Vector2(0, 1));
             sprintf_s(text_buffer, 100, "STEPS %d", config.step);
-            ui::draw_text(text_buffer, Vector2(10, float(window_height) - 30), text_color, Vector2(0, 1));
+            ui_draw::draw_text(text_buffer, Vector2(10, float(window_height) - 30), text_color, Vector2(0, 1));
 
             // Render controls UI.
             Panel panel = ui::start_panel("", Vector2(10, 10.0f), 410.0f);
