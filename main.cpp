@@ -349,7 +349,7 @@ int main(int argc, char **argv) {
             ui_draw::draw_text(text_buffer, Vector2(10, float(window_height) - 30), text_color, Vector2(0, 1));
 
             // Render controls UI.
-            Panel panel = ui::start_panel("", Vector2(10, 10.0f), 410.0f);
+            Panel panel = ui::start_panel("", Vector2(10, 10.0f));
             bool changed = ui::add_slider(&panel, "ambient light intensity", &config.ambient_light_intensity, 0.0f, 20.0f);
             changed |= ui::add_slider(&panel, "sphere lights intensity", &config.sphere_lights_intensity, 0.0f, 20.0f);
             changed |= ui::add_slider(&panel, "metal roughness", &config.metal_roughness, 0.0f, 1.0f);
